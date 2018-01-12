@@ -1,0 +1,178 @@
+ <script src="node_modules/prism.js" data-manual></script>
+ <script src="prism.js" data-manual></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<div>
+  <div class="row">
+    <div class="col-lg-12">
+        <h1 style="width:100%; text-align: center;">Welcome to the dna sequence Revolution</h1>
+    </div>
+  </div>
+  
+  <div style="display: flex; flex-direction: row;">
+     <img src="./images/gout-2870583_1920.jpg" style="height:300;width:100%;">         
+  </div>    
+  
+  <div class="container" style="display: flex; flex-direction: row;">
+    <div style="width:50%;">
+      <p>
+      <pre style="font-size: 16px;">
+ It's time to dive deep into the journey 
+ through life, 
+ and create the future we deserve!!.
+      </pre>
+     </p> 
+    </div>
+  
+    <div style="width:50%;"> 
+     <form method="post" action="/send">        
+        <label style="font-size: 20px;">Enter some sequence:</label>
+        
+        <input type="text" id="myDna" name="data" style="width: 300px; height:300px">
+         <input type="submit" value="Submit">
+     </form>
+    </div>
+     
+  </div>
+ </div>
+ <div id="table-wrapper"  style="width:50%">
+  <div id="table-scroll">  
+ <div class="container">
+     
+      <% if (dna.length) { %>    
+      
+         <table id="dnaTable">
+            
+            <thead>
+            <th id="location">location</th>
+            <th>coding</th>
+            <th>template</th>
+            <th>rna</th>
+            </thead>
+                <tbody>
+                    <% dna.forEach((seq) => { %>
+                      
+                    <tr>
+                        <td><h4 class="list-group-item-heading"><%= seq.location %></h4></td>
+                        <td><h4 class="list-group-item-heading"><%= seq.coding %></h4></td>                     
+                        <td><h4 class="list-group-item-heading"><%= seq.template %></h4></td>
+                        <td><h4 class="list-group-item-heading"><%= seq.rna %></h4></td> 
+                    </tr>
+                   
+                <% }) %>
+                </tbody>     
+                
+                  </table>                         
+                                                                      
+         <% } %>
+         </div>
+         </div>
+          
+                 
+  </div>
+  <p><input type="button" id="bt" value="Show Table Data" onclick="showTableData()" /></p>
+    
+     <form method="post" action="/aminoAcidPrecentage">        
+        <input type="text" id="demo" name="data" ></p>
+         <input type="submit" value="amino %">
+     </form>   
+  <canvas id="myChart" width="400" height="400"></canvas>
+   <% if (aa.length) { %>    
+      <% aa.forEach((amino) => { %>
+                      
+                    <tr>
+                        <td><h4 class="list-group-item-heading"><%= amino.amino_name %></h4></td>
+                        <td><h4 class="list-group-item-heading"><%= amino.precentage %>%</h4></td>                      
+                    </tr>
+                   
+                <% }) %>
+     
+     <% } %>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [0.12, 0.19,0.3, 0.5, 0.2, 0.3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+<script>
+    function showTableData() {
+       var table = document.getElementById("dnaTable");
+       var mrna='';      
+            // table rows
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                // row cells          
+                    mrna = mrna + table.rows[i].cells[3].innerText;
+       }
+       console.log(typeof(mrna));      
+       document.getElementById("demo").innerHTML= mrna
+      
+    }
+</script>
+
+
+<script>
+x = document.getElementById("tblBlah").rows[i].cells[3].innerHTML;
+console.log(x)
+var btn = document.getElementById("btnGetCol");
+btn.addEventListener("click", getColUser);
+</script>
+<style>
+  #table-wrapper {
+  position:relative;
+}
+
+#table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+
+}
+#table-wrapper table * {
+  
+  color:black;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+  border:1px solid red;
+}
+</style> 
+ <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+   

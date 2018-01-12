@@ -1,0 +1,35 @@
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const expressJwt = require('express-jwt');
+var Prism = require('prismjs');
+const port = 5000;
+const app = express();
+const http = require('http');//.Server(app);
+const index = require('./routes/index');
+
+
+//View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+// Set Static Folder
+
+app.use(express.static(path.join(__dirname, 'public')));
+// Body Parser MW
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+// use JWT auth to secure the api
+
+
+app.use('/', index);
+
+const server = http.createServer(app);
+
+
+
+server.listen(process.env.PORT || 5000, function(){
+    console.log('Server started on port '+port);
+});
+
